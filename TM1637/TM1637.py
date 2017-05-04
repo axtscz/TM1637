@@ -88,6 +88,9 @@ class TM1637:
         GPIO.direction(self.dio, GPIO.IN)
         self.bit_delay()
 
+    def clear(self):
+        self.set_segments([0,0,0,0])
+
     def write_byte(self, b):
       # 8 Data Bits
         for i in range(8):

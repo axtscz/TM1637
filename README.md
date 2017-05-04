@@ -18,7 +18,7 @@ import TM1637
 //Import driver and specify GPIO pins used for clock and data (respectively)
 tm = TM1637.TM1637("XIO-P6","XIO-P7")
 digit = tm.digit_to_segment[1]
-tm.set_segment[digit]
+tm.set_segment([digit])
 
 
 ```

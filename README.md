@@ -4,7 +4,7 @@ This is a Python Driver for the TM1637 display, such as the following: [TM1637](
 
 ## Installation
 
-This driver requires the [CHIP_IO](https://github.com/xtacocorex/CHIP_IO) python package written by xtacocorex.
+This driver requires the [CHIP_IO](https://github.com/xtacocorex/CHIP_IO) python package written by xtacocorex. *You must install this before the driver will work.*
 
 For now to install simply add the TM1637.py file to your project and import as needed. I may setup a python package later depending on if someone asks or not.
 

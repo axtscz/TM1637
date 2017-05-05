@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import subprocess
 from time import time, sleep, localtime
@@ -46,16 +45,23 @@ class TM1637:
         self.clk = clk
         self.dio = dio
         self.brightness = 0x0f
-        print self.clk
         GPIO.setup(self.clk, GPIO.OUT)
         GPIO.setup(self.dio, GPIO.OUT)
         GPIO.direction(self.clk, GPIO.IN)
         GPIO.direction(self.dio, GPIO.IN)
-        # GPIO.output(self.clk, GPIO.LOW)
-        # GPIO.output(self.dio, GPIO.LOW)
 
     def bit_delay(self):
         return
+
+    def display_num_str(self, string):
+        segs_to_display = []
+        if len(string) > 4:
+            raise ValueError("String must be 4 digits or less")
+        for digit in string:
+            if int(digit) > len(self.digit_to_segment):
+                raise ValueError("Invalid digit")
+            segs_to_display.append(self.digit_to_segment[int(digit)])
+        self.set_segments(segs_to_display)
 
     def set_segments(self, segments, pos=0):
         # Write COMM1
@@ -87,9 +93,6 @@ class TM1637:
         self.bit_delay()
         GPIO.direction(self.dio, GPIO.IN)
         self.bit_delay()
-
-    def clear(self):
-        self.set_segments([0,0,0,0])
 
     def write_byte(self, b):
       # 8 Data Bits
